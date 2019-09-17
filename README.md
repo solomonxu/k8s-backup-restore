@@ -17,7 +17,7 @@ cd /data/k8s-backup-restore
 ## 3 Prepare yaml file with resources of K8s cluster
 ```
 cd /data/k8s-backup-restore/data/restore
-vi 
+vi xxx.yaml
 ```
 
 ## 4 Restore resources into K8s cluster

@@ -96,7 +96,7 @@ function dump_container_files()
             _ret_val=$(kubectl ${_ns_arg} describe pod ${_pod} > ${_descfile})
             logger_info "Describe pod ${_pod} ok."
 
-            ## loop for command list
+            ## Loop for command list
             for _cmd in ${CMD_LIST}; do
                 _cmd=${_cmd//./ }
                 _cmd_output="${_pod_root}/cmd_output_${_container_suffix}.txt"
@@ -113,12 +113,12 @@ function dump_container_files()
             _ret_val=$(kubectl ${_ns_arg} logs ${_pod} ${_container_arg} > ${_logfile})
             logger_info "Dump pod ${_pod} log file ok."
 
-            ## loop for file list
+            ## Loop for file list
             for _file in ${_file_list}; do
                 _local_file="${_pod_root}${_file}"
                 _local_dir="${_pod_root}${_file%/*}"
                 mkdir -p ${_local_dir}
-                ## dump file/dir from container to local host
+                ## Dump file/dir from container to local host
                 logger_info "Dump pod ${_pod} container ${_container} file ${_file} to local host: ${_local_file}."
                 _ret_val=$(kubectl ${_ns_arg} cp ${_pod}:${_file} ${_container_arg} ${_local_file})
                 logger_info "Dump pod ${_pod} file ok."
@@ -132,7 +132,7 @@ function dump_container_files()
 ## Package files into zip
 function package_zip()
 {
-    ## package container files to a zip file
+    ## Package container files to a zip file
     _config_affix=$( echo ${_config_file} | awk -F/ '{print $NF}' | awk -F. '{print $1}')
     _zip_file="${BACKUP_PATH_PODFILE}/podfiles_${_config_affix}_${SUB_PATH}.tar"
     logger_info "Package container files into zip file..."
